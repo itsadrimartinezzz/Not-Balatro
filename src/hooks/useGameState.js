@@ -52,49 +52,48 @@ function gameReducer(state, action) {
     case 'PLAY_HAND': {
   if (state.selected.length === 0) return state
   const playedCards = state.hand.filter((c) => state.selected.includes(c.id))
-  const gained = calculateScore(playedCards, action.activeJokers || [])  // ← cambio aquí
+  const gained = calculateScore(playedCards, action.activeJokers || [])
   const newScore = state.score + gained.total
+  const { newHand: hand, remainingDeck: deck } = replaceCards(state.hand, state.selected, state.deck)
 
-      // Llegó al objetivo -> avanza de ronda, score se reinicia
-      if (newScore >= state.targetScore) {
-        const nextRound = state.round + 1
-        return {
-          ...state,
-          round:       nextRound,
-          score:       0,
-          targetScore: getTargetScore(nextRound, state.difficulty),
-          hand,
-          deck,
-          selected:    [],
-        }
-      }
-
-      // No llegó -> pierde una vida
-      const lives = state.lives - 1
-
-      // Sin vidas -> game over
-      if (lives <= 0) {
-        return {
-          ...state,
-          screen:   'gameover',
-          score:    newScore,
-          lives:    0,
-          hand,
-          deck,
-          selected: [],
-        }
-      }
-
-      // Sigue en la misma ronda con score acumulado
-      return {
-        ...state,
-        score:    newScore,
-        lives,
-        hand,
-        deck,
-        selected: [],
-      }
+  if (newScore >= state.targetScore) {
+    const nextRound = state.round + 1
+    return {
+      ...state,
+      round:       nextRound,
+      score:       0,
+      targetScore: getTargetScore(nextRound, state.difficulty),
+      hand,
+      deck,
+      selected:    [],
     }
+  }
+
+  const lives = state.lives - 1
+
+  if (lives <= 0) {
+    return {
+      ...state,
+      screen:   'gameover',
+      score:    newScore,
+      lives:    0,
+      hand,
+      deck,
+      selected: [],
+    }
+  }
+
+  return {
+    ...state,
+    score:    newScore,
+    lives,
+    hand,
+    deck,
+    selected: [],
+  }
+}
+
+
 
     case 'DISCARD': {
       if (state.selected.length === 0) return state
@@ -124,7 +123,7 @@ export function useGameState() {
   const startGame    = useCallback((difficulty) => dispatch({ type: 'START_GAME', difficulty }), [])
   const resetGame    = useCallback(() => dispatch({ type: 'RESET_GAME' }), [])
   const toggleSelect = useCallback((id) => dispatch({ type: 'TOGGLE_SELECT', id }), [])
-  const playHand     = useCallback(() => dispatch({ type: 'PLAY_HAND' }), [])
+  const playHand = useCallback((activeJokers) => dispatch({ type: 'PLAY_HAND', activeJokers }), [])   
   const discard      = useCallback(() => dispatch({ type: 'DISCARD' }), [])
   const skip         = useCallback(() => dispatch({ type: 'SKIP' }), [])
 
