@@ -1,7 +1,6 @@
 /**
  * Evalúa manos de póker y devuelve { handName, baseScore, multiplier }
- * Cartas: { id, suit, value, numericValue }
- * El As vale 14 (alto) o 1 (bajo) solo para escaleras.
+ 
  */
 
 // Rango numérico para comparar valores y detectar escaleras

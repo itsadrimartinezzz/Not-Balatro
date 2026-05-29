@@ -20,16 +20,16 @@ function App() {
   }
 
   if (game.screen === 'gameover') {
-    return (
-      <GameOverScreen
-        score={game.score}
-        round={game.round}
-        onRestart={game.resetGame}
-      />
-    )
-  }
+  return (
+    <GameOverScreen
+      score={game.score}
+      round={game.round}
+      onRestart={() => { game.resetGame(); jokers.resetJokers(); tarot.resetTarot() }}
+    />
+  )
+}
 
-  // parte front: descomentar GameBoard cuando Adriana lo tenga listo
+  // parte front: descomentar GameBoard ADRIANA
   return (
     // <GameBoard
     //   hand          = {game.hand}
@@ -82,7 +82,8 @@ function App() {
     <button onClick={() => game.playHand(jokers.active)}>Jugar mano</button>
     <button onClick={game.discard}>Descartar</button>
     <button onClick={game.skip}>Skip ronda</button>
-    <button onClick={game.resetGame}>Reiniciar</button>
+    <button onClick={() => { game.resetGame(); jokers.resetJokers(); tarot.resetTarot() }}>Reiniciar</button>
+
   </div>
 
   {game.selected.length > 0 && (
