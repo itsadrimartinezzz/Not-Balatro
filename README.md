@@ -22,25 +22,28 @@ npm run dev
 ```
 
 ## Estructura del proyecto
+
+```
 src/
 ├── data/
-│   ├── deck.js          # 52 cartas de la baraja
-│   ├── jokers.js        # 6 jokers con efectos de puntaje
-│   └── tarotCards.js    # 6 cartas de tarot con efectos especiales
+│   ├── deck.js            # 52 cartas de la baraja
+│   ├── jokers.js          # 6 jokers con efectos de puntaje
+│   └── tarotCards.js      # 6 cartas de tarot con efectos especiales
 ├── utils/
-│   ├── deckUtils.js     # shuffle, deal y replace de cartas
-│   ├── handEvaluator.js # detección de combinaciones de póker
-│   ├── scoreCalc.js     # cálculo de puntaje final
+│   ├── deckUtils.js       # shuffle, deal y replace de cartas
+│   ├── handEvaluator.js   # detección de combinaciones de póker
+│   ├── scoreCalc.js       # cálculo de puntaje final
 │   └── difficultyUtils.js # escalado de puntaje por dificultad
 ├── hooks/
-│   ├── useGameState.js  # estado global del juego
-│   ├── useJokers.js     # manejo de jokers activos
-│   └── useTarot.js      # manejo de cartas de tarot
+│   ├── useGameState.js    # estado global del juego
+│   ├── useJokers.js       # manejo de jokers activos
+│   └── useTarot.js        # manejo de cartas de tarot
 └── components/
-├── Menu/            # pantalla de inicio
-├── Game/            # pantalla de juego
-├── Tarot/           # modal de tarot
-└── GameOver/        # pantalla de game over
+    ├── Menu/              # pantalla de inicio
+    ├── Game/              # pantalla de juego
+    ├── Tarot/             # modal de tarot
+    └── GameOver/          # pantalla de game over
+```
 
 ## Reglas del juego
 
