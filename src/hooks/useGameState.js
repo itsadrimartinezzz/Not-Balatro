@@ -50,12 +50,10 @@ function gameReducer(state, action) {
     }
 
     case 'PLAY_HAND': {
-      if (state.selected.length === 0) return state
-
-      const playedCards = state.hand.filter((c) => state.selected.includes(c.id))
-      const gained = calculateScore(playedCards, state.activeJokers)
-      const newScore = state.score + gained.total
-      const { newHand: hand, remainingDeck: deck } = replaceCards(state.hand, state.selected, state.deck)
+  if (state.selected.length === 0) return state
+  const playedCards = state.hand.filter((c) => state.selected.includes(c.id))
+  const gained = calculateScore(playedCards, action.activeJokers || [])  // ← cambio aquí
+  const newScore = state.score + gained.total
 
       // Llegó al objetivo -> avanza de ronda, score se reinicia
       if (newScore >= state.targetScore) {
