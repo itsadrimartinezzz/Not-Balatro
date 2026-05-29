@@ -1,6 +1,6 @@
 
 //maso de cartas 
-const SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+const SUITS = ['hearts', 'diamonds', 'clubs', 'spades'];
 
 const VALUES = [
     { label: 'A', numericValue: 11 },
