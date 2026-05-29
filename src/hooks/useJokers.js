@@ -1,5 +1,4 @@
-// Administra los jokers activos del jugador y las opciones
- //disponibles para elegir entre rondas.
+// Administra los jokers activos del jugador y las opciones disponibles para elegir entre rondas.
 
 import { useState, useCallback } from 'react'
 import { JOKERS } from '../data/jokers.js'
@@ -12,10 +11,10 @@ const getRandomJokers = (exclude = []) => {
 }
 
 export function useJokers() {
-  const [active, setActive]   = useState([])   
-  const [pending, setPending] = useState([])   
+  const [active, setActive]   = useState([])
+  const [pending, setPending] = useState([])
 
-  // 2 opciones nuevas para el jugador 
+  // 2 opciones nuevas para el jugador
   const offerJokers = useCallback(() => {
     const currentIds = active.map((j) => j.id)
     const options = getRandomJokers(currentIds)
