@@ -79,7 +79,7 @@ function App() {
   </div>
 
   <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-    <button onClick={game.playHand}>Jugar mano</button>
+    <button onClick={() => game.playHand(jokers.active)}>Jugar mano</button>
     <button onClick={game.discard}>Descartar</button>
     <button onClick={game.skip}>Skip ronda</button>
     <button onClick={game.resetGame}>Reiniciar</button>
